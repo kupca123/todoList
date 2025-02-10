@@ -35,5 +35,9 @@ Next steps describe how to run the application using Docker Compose.
     ```
 2. Run the following command to builds, creates, starts, and attaches to container for postgres.
     ``` bash
-    docker-compose up
+    docker compose up -d
+    ```
+   Now the Postgres container is running. For the next start of that container, you can use the following command:
+    ``` bash
+    docker compose start
     ```

@@ -5,11 +5,12 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: todo_list_backed_db_admin
+      POSTGRES_USER: todo_list_backend_db_admin
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: todo_list_backed_db
+      POSTGRES_DB: todo_list_backend_db
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   todo-list-data:

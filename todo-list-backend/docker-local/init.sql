@@ -1,0 +1,2 @@
+CREATE DATABASE todo_list_backend_db_migration;
+GRANT ALL PRIVILEGES ON DATABASE todo_list_backend_db_migration TO todo_list_backend_db_admin;

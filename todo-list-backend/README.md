@@ -37,7 +37,15 @@ Next steps describe how to run the application using Docker Compose.
     ``` bash
     docker compose up -d
     ```
-   Now the Postgres container is running. For the next start of that container, you can use the following command:
+3. Check if the Postgres container is running.
+    ``` bash
+    docker ps
+    ```
+   You should see a container with the name `todo-list-postgres` in the list.
+   If the container is not running, you can start it with the following command.
+
     ``` bash
     docker compose start
     ```
+   For the next start of that container, you can use the same start command as above.
+   Don't use `docker compose up` again. 

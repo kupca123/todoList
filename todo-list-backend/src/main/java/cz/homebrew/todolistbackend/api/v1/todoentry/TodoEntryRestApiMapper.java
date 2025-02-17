@@ -2,15 +2,26 @@ package cz.homebrew.todolistbackend.api.v1.todoentry;
 
 import cz.homebrew.todolistbackend.api.v1.todoentry.dto.CreateUpdateTodoEntryReqTo;
 import cz.homebrew.todolistbackend.api.v1.todoentry.dto.CreateUpdateTodoEntryResTo;
+import cz.homebrew.todolistbackend.api.v1.todoentry.dto.ListTodoEntriesFilterReqTo;
 import cz.homebrew.todolistbackend.api.v1.todoentry.dto.ListTodoEntriesResTo;
 import cz.homebrew.todolistbackend.service.TodoEntryService;
 import cz.homebrew.todolistbackend.service.TodoEntryService.CreateUpdateTodoEntryIn;
 import cz.homebrew.todolistbackend.service.TodoEntryService.CreateUpdateTodoEntryOut;
 import cz.homebrew.todolistbackend.service.TodoEntryService.GetTodoEntriesOut;
+import cz.homebrew.todolistbackend.service.TodoEntryService.ListTodoEntriesFilterIn;
 
 public class TodoEntryRestApiMapper {
 
     static class ListTodoEntriesMapper {
+
+        static ListTodoEntriesFilterIn mapToListTodoEntriesFilterIn(final ListTodoEntriesFilterReqTo filterReqTo) {
+            final ListTodoEntriesFilterIn filterIn = new ListTodoEntriesFilterIn();
+            if (filterReqTo == null) {
+                return filterIn;
+            }
+            filterIn.setPageable(filterReqTo.getPageableInstance());
+            return filterIn;
+        }
 
         static ListTodoEntriesResTo mapToListTodoEntriesResTo(final GetTodoEntriesOut getTodoEntriesOut) {
             final ListTodoEntriesResTo listTodoEntriesResTo = new ListTodoEntriesResTo();

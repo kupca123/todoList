@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {ListChecks} from 'lucide-vue-next';
+import { ListChecks } from 'lucide-vue-next';
 
 export default {
   name: 'TheHeaderApp',

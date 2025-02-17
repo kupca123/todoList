@@ -12,14 +12,23 @@
           type="text"
           class="form-control input-custom"
           v-model="todoEntry.title"
-          @change="updateTodoEntry">
+          @change="updateTodoEntry(this.todoEntry)">
+    </div>
+    <div @click="deleteTodoEntry(this.todoEntry.id)">
+      <Trash2 />
     </div>
   </div>
 </template>
 
 <script>
+import { Trash2 } from 'lucide-vue-next';
+
 export default {
   name: 'TodoEntry',
+
+  components: {
+    Trash2
+  },
 
   data() {
     return {
@@ -37,10 +46,13 @@ export default {
   methods: {
     updateFinished() {
       this.todoEntry.finished = !this.todoEntry.finished;
-      this.updateTodoEntry();
+      this.updateTodoEntry(this.todoEntry);
     },
-    updateTodoEntry() {
-      this.$emit('update-todo-entry', this.todoEntry);
+    updateTodoEntry(todoEntry) {
+      this.$emit('update-todo-entry', todoEntry);
+    },
+    deleteTodoEntry(todoEntryId) {
+      this.$emit('delete-todo-entry', todoEntryId);
     }
   }
 

@@ -26,9 +26,9 @@ public class TodoEntryResource {
 
     @GetMapping
     public ResponseEntity<?> listTodoEntries() {
-        final List<GetTodoEntriesOut> getTodoEntriesOutList = todoEntryService.getTodoEntries();
+        final List<GetTodoEntriesOut> outList = todoEntryService.getTodoEntries();
         final List<ListTodoEntriesResTo> resToList
-                = MapperUtils.mapList(getTodoEntriesOutList, ListTodoEntriesMapper::mapToListTodoEntriesResTo);
+                = MapperUtils.mapList(outList, ListTodoEntriesMapper::mapToListTodoEntriesResTo);
         return new ResponseEntity<>(resToList, HttpStatus.OK);
     }
 

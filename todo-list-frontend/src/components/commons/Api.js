@@ -1,10 +1,19 @@
 function sendApiRequest(request, options) {
     return (fetch(request, options).then(response => {
-        if (!response.ok) {
-            throw response;
-        }
-        return response.json();
-    }));
+            if (!response.ok) {
+                throw response;
+            }
+
+            return response.text();
+        })
+            .then(text => {
+                if (text) {
+                    return JSON.parse(text);
+                } else {
+                    return '{}';
+                }
+            })
+    );
 }
 
 function createRequestOptions(method = 'get', body = {}) {

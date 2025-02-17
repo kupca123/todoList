@@ -8,18 +8,18 @@
   <div class="controls-custom">
     Komponenta pro řádek ovládání
   </div>
-  <div class="todo-list-custom" v-for="todoEntry in todoEntries" :key="todoEntry.id">
-    <div class="todo-entry-custom">
+  <div class="todo-list-custom">
+    <div class="todo-entry-custom" v-for="todoEntry in todoEntries" :key="todoEntry.id">
       <TodoEntry
           :todo-entry-prop="todoEntry"
           @update-todo-entry="updateTodoEntry(todoEntry)"
           @delete-todo-entry="deleteTodoEntry(todoEntry.id)"/>
     </div>
-<!--    <div class="todo-entry-custom">-->
-<!--      <TodoEntry-->
-<!--          :todo-entry-prop="newTodoEntry"-->
-<!--          @update-todo-entry="createTodoEntry(newTodoEntry)"/>-->
-<!--    </div>-->
+    <div class="todo-entry-custom">
+      <TodoEntry
+          :todo-entry-prop="newTodoEntry"
+          @update-todo-entry="createTodoEntry(newTodoEntry)"/>
+    </div>
   </div>
 
 </template>
@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       todoEntries: [],
+      newTodoEntry: {},
       sent: false,
       success: false,
       errorMsg: ''
@@ -77,8 +78,14 @@ export default {
 
     updateTodoEntry(todoEntry) {
       ApiPut('/api/v1/todoEntry/update', todoEntry)
+          .then(async () => {
+            try {
+              return await ApiGet('/api/v1/todoEntry');
+            } catch (error) {
+              this.setError(error, 'Chyba při načítání úkolů.');
+            }
+          })
           .then(data => {
-            console.log('data: ', data)
             this.todoEntries = data;
           })
           .catch((error) => {
@@ -143,10 +150,11 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: var(--bs-primary);
-  color: var(--bs-light);
+ /* background-color: var(--bs-primary);
+  color: var(--bs-light); */
   margin-top: 0.2rem;
   padding: 0.5rem 0.7rem;
+  border: var(--bs-secondary) 3px solid;
   border-radius: 0.5rem;
 }
 </style>

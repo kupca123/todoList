@@ -4,17 +4,20 @@
       <input
           type="checkbox"
           class="form-check-input input-checkbox-custom"
+          v-if="todoEntry.id != null"
           v-model="todoEntry.finished"
           @click="updateFinished">
     </div>
     <div>
       <input
           type="text"
-          class="form-control input-custom"
+          class="form-control input-textbox-custom"
           v-model="todoEntry.title"
           @change="updateTodoEntry(this.todoEntry)">
     </div>
-    <div @click="deleteTodoEntry(this.todoEntry.id)">
+    <div
+        v-if="todoEntry.id != null"
+        @click="deleteTodoEntry(this.todoEntry.id)">
       <Trash2 />
     </div>
   </div>
@@ -48,9 +51,14 @@ export default {
       this.todoEntry.finished = !this.todoEntry.finished;
       this.updateTodoEntry(this.todoEntry);
     },
+
     updateTodoEntry(todoEntry) {
       this.$emit('update-todo-entry', todoEntry);
+      if (this.todoEntry.id == null) {
+        this.todoEntry.title = '';
+      }
     },
+
     deleteTodoEntry(todoEntryId) {
       this.$emit('delete-todo-entry', todoEntryId);
     }
@@ -61,14 +69,19 @@ export default {
 </script>
 
 <style scoped>
-.input-custom {
-  background-color: var(--bs-primary);
-  color: var(--bs-light);
+.input-textbox-custom {
+  background-color: var(--bs-light);
   border: none;
 }
 
-.input-checkbox-custom:checked {
-  background-color: var(--bs-success);
+.input-checkbox-custom {
+  border: var(--bs-dark) solid 1px;
+  height: 20px;
+  width: 20px;
 }
-
+/*
+.input-checkbox-custom:checked {
+  background-color: var(--bs-primary);
+}
+*/
 </style>

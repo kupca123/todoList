@@ -1,7 +1,11 @@
 <template>
-<div>
-  <TheHeaderApp />
-  <TheMainTodoList />
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <div class="w-100">
+    <TheHeaderApp />
+  </div>
+  <div>
+    <TheMainTodoList />
+  </div>
 </div>
 </template>
 

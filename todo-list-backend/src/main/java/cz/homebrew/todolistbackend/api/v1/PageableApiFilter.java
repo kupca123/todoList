@@ -14,12 +14,11 @@ public class PageableApiFilter {
     private String order;
     private String orderBy;
 
-    //TODO JAL: přidat načítání dat z konfigurace
 
     public PageableApiFilter(){
         this.page = 1;
         this.pageSize = 10;
-        this.order = "ASC";
+        this.order = "DESC";
         this.orderBy = "id";
     }
     public PageableApiFilter(String orderBy, String order){

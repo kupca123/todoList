@@ -8,9 +8,6 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public class CreateUpdateTodoEntryReqTo {
-
-//    TODO JAL: přidat validace a validační skupiny
-
     private Long id;
     private String title;
     private boolean finished;

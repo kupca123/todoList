@@ -15,7 +15,7 @@ public class PageableListOutMapper {
 
     private static <T> PageableListOut.Pagination mapToPagination(final Page<T> page) {
         return new PageableListOut.Pagination()
-                .setCurrentPage(page.getNumber())
+                .setCurrentPage(page.getNumber() + 1)
                 .setPageSize(page.getSize())
                 .setTotalCount(page.getTotalElements());
     }
